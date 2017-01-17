@@ -99,7 +99,6 @@ endfunction
 " Sets how many lines of history VIM has to remember
 set history=700
 
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -178,12 +177,10 @@ if has("gui_running")
   set t_Co=256
   "set background=dark
   colorscheme grb256
-  set nonu
 else
   set t_Co=256
-  colorscheme grb256
   set background=dark
-  set nonu
+  colorscheme grb256
 endif
 
 set encoding=utf8
@@ -397,21 +394,21 @@ set t_Co=256
 let g:Powerline_symbols='unicode'
 
 " Format the statusline
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 
-"function! CurDir()
-    "let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-    "return curdir
-"endfunction
+function! CurDir()
+    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    return curdir
+endfunction
 
-"function! HasPaste()
-    "if &paste
-        "return 'PASTE MODE  '
-    "else
-        "return ''
-    "endif
-"endfunction
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    else
+        return ''
+    endif
+endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -447,7 +444,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "to line start
 "to line end
 map 0 ^
-map 1 $
+"map 1 $
 
 "Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -494,19 +491,19 @@ map <leader>o :BufExplorer<cr>
 """"""""""""""""""""""""""""""
 " => Minibuffer plugin
 """"""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 0
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplSplit = 30
+" let g:miniBufExplModSelTarget = 1
+" let g:miniBufExplorerMoreThanOne = 0
+" let g:miniBufExplModSelTarget = 0
+" let g:miniBufExplUseSingleClick = 1
+" let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplVSplit = 30
 let g:miniBufExplSplitBelow=0
 
-let g:bufExplorerSortBy = "name"
+" let g:bufExplorerSortBy = "name"
 
-autocmd BufRead,BufNew :call UMiniBufExplorer
+" autocmd BufRead,BufNew :call UMiniBufExplorer
 
-map <leader>u :TMiniBufExplorer<cr>
+map <leader>u :MBEToggle<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -577,6 +574,12 @@ endfunction
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
 map <leader>ff :MRU<CR>
+
+""""""""""""""""""""""""""""""
+" => NERDTree plugin
+""""""""""""""""""""""""""""""
+map <leader>nf :NERDTreeFind<CR>
+map <leader>nt :NERDTreeToggle<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -694,12 +697,22 @@ nmap <silent> <leader>fe :Sexplore!<cr>
 
 """"""""""""""""""""""""""""""
 "for grep tag"""""""""""""""""
-"
 """"""""""""""""""""""""""""""
 nmap <leader>cn :cn<CR><CR>
 
+""""""""""""""""""""""""""""""
+"""""""Tagbar"""""""""""""""""
+""""""""""""""""""""""""""""""
+let g:tagbar_width=30
+map <leader>t :Tagbar<CR><CR>
+
+""""""""""""""""""""""""""""""
+"""""""cursor"""""""""""""""""
+""""""""""""""""""""""""""""""
+set cursorline
+
 "Enable mouse
-set mouse=a
+set mouse=
 
 ""
 "For Ctrlp"
@@ -779,6 +792,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'ervandew/supertab'
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'vim-utils/vim-man'
 Bundle 'airblade/vim-gitgutter'
 "===============================================
 " vim-scripts repos
