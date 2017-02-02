@@ -596,9 +596,12 @@ noremap <leader>y :CommandTFlush<cr>
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 "set grepprg=/bin/grep\ -nH
-set grepprg=gid
 
-
+if MySys() == "mac"
+    set grepprg=gid32
+else
+    set grepprg=gid
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
