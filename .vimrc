@@ -162,7 +162,7 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 if MySys() == "mac"
-  set gfn=Menlo:h14
+  set gfn=Menlo:h18
   set shell=/bin/bash
 elseif MySys() == "windows"
   set gfn=Bitstream\ Vera\ Sans\ Mono:h10
@@ -172,7 +172,6 @@ elseif MySys() == "linux"
 endif
 
 if has("gui_running")
-  set guifont=Monaco\ 13
   set guioptions-=T
   set t_Co=256
   "set background=dark
